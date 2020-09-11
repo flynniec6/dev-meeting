@@ -3,7 +3,7 @@
     <h1>Current Sprint</h1>
     <div v-if="tasks.length === 0">{{ message }}</div>
     <ul>
-      <li v-for="task in tasks" :key="task.iid">{{ task.title }}</li>
+      <li v-for="task in tasks" :key="task.iid"><issue :issue="task"></issue></li>
     </ul>
   </div>
 
@@ -12,8 +12,12 @@
 <script>
 import {onMounted, ref} from "vue";
 import axios from "axios";
+import Issue from "@/components/Issue";
 
 export default {
+  components: {
+    Issue
+  },
   setup() {
     const message = ref("No tasks in current sprint");
     let tasks = ref([]);
